@@ -1,0 +1,9 @@
+int sensorPin = A0;
+void setup() {
+  pinMode(sensorPin, INPUT);
+  Serial.begin(9600);
+}
+void loop() {
+  Serial.println(analogRead(sensorPin));
+  delay(100);
+}
