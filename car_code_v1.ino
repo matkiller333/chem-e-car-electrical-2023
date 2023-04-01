@@ -15,7 +15,6 @@
 float voltage,ecValue,temperature = 25;
 DFRobot_EC ec;
 float data;
-int sensorPin = A0;
 
 //General var initialisation
 const int timeDelay=333; //time interval for sensor reading (in millisec)
@@ -101,8 +100,9 @@ void stopEngine() {
 }
 
 float readProbe() {
-  //TODO: Implement function
-  return analogRead(sensorPin);
+  voltage = analogRead(EC_PIN)/1024.0*5000;   // read the voltage
+  ecValue =  ec.readEC(voltage,temperature);  // convert voltage to EC with temperature compensation
+  return ecValue;
 }
 
 void movingAverage(){
